@@ -1,0 +1,16 @@
+
+services:
+  backend:
+    build: ./apps/backend
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=development
+  frontend:
+    build: ./apps/frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - ENV NODE_ENV=production
+      - ENV HOSTNAME=0.0.0.0
+      - ENV PORT=3000
