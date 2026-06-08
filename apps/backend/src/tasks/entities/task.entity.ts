@@ -22,12 +22,6 @@ export class Task {
   @JoinColumn({ name: 'statusId', referencedColumnName: 'id' })
   status!: TaskStatus;
 
-  @ManyToOne(() => User, (user) => user.tasks, {
-    nullable: false,
-  })
-  @JoinColumn({ name: 'authorId', referencedColumnName: 'id' })
-  author!: User;
-
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt!: Date;
 
@@ -35,8 +29,14 @@ export class Task {
   completedAt!: Date | null;
 
   @ManyToOne(() => User, (user) => user.tasks, {
+    nullable: false,
+  })
+  @JoinColumn({ name: 'authorId', referencedColumnName: 'id' })
+  author!: User;
+
+  @ManyToOne(() => User, (user) => user.completedTasks, {
     nullable: true,
   })
-  @JoinColumn({ name: 'completedBy', referencedColumnName: 'id' })
+  @JoinColumn({ name: 'completedById', referencedColumnName: 'id' })
   completedBy!: User | null;
 }

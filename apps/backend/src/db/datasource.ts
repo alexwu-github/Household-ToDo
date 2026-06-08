@@ -4,6 +4,7 @@ export default new DataSource({
   // basic setup
   synchronize: false,
   migrations: [__dirname + '/migrations/**/*{.js,.ts}'],
+  entities: [__dirname + '/../**/*.entity{.js,.ts}'],
   type: 'postgres',
   host: process.env.DB_HOST ?? 'localhost',
   port: Number(process.env.DB_PORT ?? 5432),
