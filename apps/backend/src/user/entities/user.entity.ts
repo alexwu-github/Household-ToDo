@@ -1,10 +1,10 @@
-import { Entity, Column, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryColumn, OneToMany } from 'typeorm';
 import { Task } from '../../tasks/entities/task.entity';
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn('uuid')
-  id!: string;
+  @PrimaryColumn({ type: 'int' })
+  id!: number;
 
   @Column({ type: 'varchar', length: 50 })
   name!: string;
