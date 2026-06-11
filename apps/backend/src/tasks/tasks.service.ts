@@ -12,6 +12,7 @@ export class TasksService {
   getAll(): Promise<Task[]> {
     return this.taskRepository.query('SELECT * FROM task');
   }
+
   async create(dto: CreateTaskDto): Promise<Task> {
     try {
       const task = this.taskRepository.create({
