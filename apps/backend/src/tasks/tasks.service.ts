@@ -18,6 +18,7 @@ export class TasksService {
       const task = this.taskRepository.create({
         description: dto.description,
         author: { id: dto.authorId },
+        status: { id: dto.task_status },
       });
       return await this.taskRepository.save(task);
     } catch (error) {
