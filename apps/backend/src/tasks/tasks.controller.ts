@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { TasksService } from './tasks.service';
 import { Task } from './entities/task.entity';
 import { CreateTaskDto } from './dto/create-tasks.dto';
@@ -11,7 +11,10 @@ export class TasksController {
   getAll(): Promise<Task[]> {
     return this.tasksService.getAll();
   }
-
+  @Get(':id')
+  getTask(@Param('id') id: string): Promise<Task> {
+    return this.tasksService.getTask(id);
+  }
   @Post()
   async create(@Body() createTaskDto: CreateTaskDto): Promise<string> {
     return await this.tasksService
