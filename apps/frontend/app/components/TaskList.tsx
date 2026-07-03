@@ -1,12 +1,12 @@
-import { getTasks } from '../lib/api'
-import TaskItem from './TaskItem'
-import type { Task } from '../lib/types'
+import { getTasks } from '../lib/data';
+import TaskItem from './TaskItem';
+import type { Task } from '../lib/types';
 
 export default async function TaskList() {
-  const tasks: Task[] = await getTasks()
+  const tasks: Task[] = await getTasks();
 
   if (tasks.length === 0) {
-    return <p className="text-sm text-zinc-400">No tasks yet.</p>
+    return <p className="text-sm text-zinc-400">No tasks yet.</p>;
   }
 
   return (
@@ -15,5 +15,5 @@ export default async function TaskList() {
         <TaskItem key={task.id} task={task} />
       ))}
     </ul>
-  )
+  );
 }
