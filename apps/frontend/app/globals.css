@@ -38,7 +38,7 @@
 
   .field {
     @apply w-full bg-board-surface border border-board-border rounded-card
-           px-4 py-3 text-chalk placeholder-chalk-muted/70
+           px-4 py-3 text-chalk placeholder:text-chalk-muted/70
            focus:outline-none focus:ring-2 focus:ring-mustard/60 focus:border-mustard/60
            transition-colors;
   }
@@ -64,5 +64,26 @@
 
   .task-date {
     @apply font-mono text-xs text-chalk-muted tabular-nums;
+  }
+
+  .page-container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: 42rem;
+    padding: 3rem 1rem;
+  }
+
+  .page-title {
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    color: var(--color-chalk);
+  }
+
+  .page-section {
+    margin-bottom: 2rem;
   }
 }
