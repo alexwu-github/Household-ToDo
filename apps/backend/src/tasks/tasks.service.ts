@@ -32,4 +32,16 @@ export class TasksService {
       throw error;
     }
   }
+
+  async delete(id: string): Promise<void> {
+    try {
+      const result = await this.taskRepository.delete(id);
+      if (result.affected === 0) {
+        throw new NotFoundException(`Task with ID ${id} not found`);
+      }
+    } catch (error) {
+      console.error('Error deleting task:', error);
+      throw error;
+    }
+  }
 }
