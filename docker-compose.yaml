@@ -2,18 +2,18 @@ services:
   postgres:
     image: postgres:latest
     volumes:
-      - postgres_data:/var/lib/postgresql  
+      - postgres_data:/var/lib/postgresql
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: household_todo
     ports:
-      - "5432:5432"
-    
+      - '5432:5432'
+
   backend:
     build: ./apps/backend
     ports:
-      - "3001:3001"
+      - '3001:3001'
     environment:
       - NODE_ENV=development
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/household_todo
@@ -23,11 +23,12 @@ services:
   frontend:
     build: ./apps/frontend
     ports:
-      - "3000:3000"
+      - '3000:3000'
     environment:
       - NODE_ENV=production
       - HOSTNAME=0.0.0.0
       - PORT=3000
+      - API_URL=http://backend:3001
     depends_on:
       - backend
 
