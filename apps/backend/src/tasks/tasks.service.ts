@@ -10,11 +10,16 @@ export class TasksService {
     @Inject(TASK_REPOSITORY) private taskRepository: Repository<Task>,
   ) {}
   async getAll(): Promise<Task[]> {
-    return this.taskRepository.find();
+    return this.taskRepository.find({
+      relations: { author: true, status: true },
+    });
   }
 
   async getTask(id: string): Promise<Task> {
-    const task = await this.taskRepository.findOne({ where: { id } });
+    const task = await this.taskRepository.findOne({
+      where: { id },
+      relations: { author: true, status: true },
+    });
     if (!task) throw new NotFoundException(`Task with ID ${id} not found`);
     return task;
   }
@@ -29,6 +34,18 @@ export class TasksService {
       return await this.taskRepository.save(task);
     } catch (error) {
       console.error('Error creating task:', error);
+      throw error;
+    }
+  }
+
+  async delete(id: string): Promise<void> {
+    try {
+      const result = await this.taskRepository.delete(id);
+      if (result.affected === 0) {
+        throw new NotFoundException(`Task with ID ${id} not found`);
+      }
+    } catch (error) {
+      console.error('Error deleting task:', error);
       throw error;
     }
   }
