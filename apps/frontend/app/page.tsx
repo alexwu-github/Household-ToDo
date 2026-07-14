@@ -2,6 +2,7 @@ import { Suspense } from 'react';
 import TaskList from './components/TaskList';
 import CreateTaskForm from './components/CreateTaskForm';
 import Loading from './loading';
+import getUser from './lib/getUser';
 
 export default function Home() {
   return (
