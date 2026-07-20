@@ -50,7 +50,7 @@
   }
 
   .task-row {
-    @apply relative flex items-center justify-between gap-4 bg-board-surface
+    @apply relative flex items-center gap-4 bg-board-surface
            border border-board-border rounded-card pl-5 pr-4 py-4
            hover:bg-board-surface-hover transition-colors;
   }
@@ -63,7 +63,7 @@
   }
 
   .task-date {
-    @apply font-mono text-xs text-chalk-muted tabular-nums;
+    @apply font-mono text-xs text-chalk-muted tabular-nums shrink-0;
   }
 
   .page-container {
