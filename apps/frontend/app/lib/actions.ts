@@ -16,7 +16,11 @@ export async function createTask(formData: FormData) {
     body: JSON.stringify({ description, authorId, task_status }),
   });
 
-  if (!res.ok) throw new Error('Failed to create task');
+  if (!res.ok) {
+    const body = await res.text();
+    console.error('createTask failed:', res.status, body);
+    throw new Error('Failed to create task');
+  }
 
   revalidatePath('/');
 }
