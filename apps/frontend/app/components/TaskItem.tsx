@@ -7,7 +7,7 @@ export default function TaskItem({ task }: { task: Task }) {
 
   return (
     <li className="task-row">
-      <span className="text-sm text-chalk">{task.description}</span>
+      <span className="flex-1 text-sm text-chalk">{task.description}</span>
       <span className="task-date">{date}</span>
       <DeleteTaskButton task={task} />
     </li>
