@@ -54,3 +54,13 @@ export async function deleteTask(task: Task) {
 
   revalidatePath('/');
 }
+
+export async function toggleComplete(task: Task) {
+  const res = await fetch(`${API_URL}/task/${task.id}/complete`, {
+    method: 'PATCH',
+  });
+
+  if (!res.ok) throw new Error('Failed to toggle task');
+
+  revalidatePath('/');
+}

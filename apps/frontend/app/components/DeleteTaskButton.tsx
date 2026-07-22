@@ -10,10 +10,8 @@ export default function DeleteTaskButton({ task }: { task: Task }) {
   };
 
   return (
-    <div>
-      <button type="button" onClick={handleDelete}>
-        ❌
-      </button>
-    </div>
+    <button type="button" className="btn-delete" onClick={handleDelete}>
+      ❌
+    </button>
   );
 }
