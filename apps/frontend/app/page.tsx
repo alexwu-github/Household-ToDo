@@ -1,10 +1,11 @@
-import { Suspense } from 'react';
 import TaskList from './components/TaskList';
 import CreateTaskForm from './components/CreateTaskForm';
-import Loading from './loading';
-import getUser from './lib/getUser';
+import { getTasks } from './lib/data';
+import type { Task } from './lib/types';
 
-export default function Home() {
+export default async function Home() {
+  const tasks: Task[] = await getTasks();
+
   return (
     <main className="page-container">
       <h1 className="page-title">Household To-Do</h1>
@@ -16,9 +17,7 @@ export default function Home() {
 
       <section>
         <h2 className="section-label">Tasks</h2>
-        <Suspense fallback={<Loading />}>
-          <TaskList />
-        </Suspense>
+        <TaskList tasks={tasks} />
       </section>
     </main>
   );
