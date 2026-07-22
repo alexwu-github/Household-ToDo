@@ -43,7 +43,12 @@ export class TasksService {
     if (dto.description !== undefined) {
       task.description = dto.description;
     }
+    return await this.taskRepository.save(task);
+  }
 
+  async toggleComplete(id: string): Promise<Task> {
+    const task = await this.getTask(id);
+    task.completedAt = task.completedAt ? null : new Date();
     return await this.taskRepository.save(task);
   }
 

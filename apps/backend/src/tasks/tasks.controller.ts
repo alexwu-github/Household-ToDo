@@ -37,6 +37,12 @@ export class TasksController {
   ): Promise<Task> {
     return await this.tasksService.update(id, updateTaskDto);
   }
+
+  @Patch(':id/complete')
+  async toggleComplete(@Param('id') id: string): Promise<Task> {
+    return await this.tasksService.toggleComplete(id);
+  }
+
   @Delete(':id')
   async delete(@Param('id') id: string): Promise<string> {
     await this.tasksService.delete(id);
