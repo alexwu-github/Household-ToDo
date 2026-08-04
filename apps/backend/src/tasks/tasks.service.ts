@@ -38,6 +38,20 @@ export class TasksService {
     }
   }
 
+  async update(id: string, dto: Partial<CreateTaskDto>): Promise<Task> {
+    const task = await this.getTask(id);
+    if (dto.description !== undefined) {
+      task.description = dto.description;
+    }
+    return await this.taskRepository.save(task);
+  }
+
+  async toggleComplete(id: string): Promise<Task> {
+    const task = await this.getTask(id);
+    task.completedAt = task.completedAt ? null : new Date();
+    return await this.taskRepository.save(task);
+  }
+
   async delete(id: string): Promise<void> {
     try {
       const result = await this.taskRepository.delete(id);

@@ -1,3 +1,4 @@
 {
-  "jest.rootPath": "apps/backend"
+  "jest.rootPath": "apps/backend",
+  "css.lint.unknownAtRules": "ignore"
 }
